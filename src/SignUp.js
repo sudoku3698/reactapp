@@ -38,7 +38,7 @@ class SignUp extends Component{
     render(){
         return(
                 <div style={{"width":"50%", "margin":"auto"}}>
-                    hey users {this.state.onlineusers}
+                    <h2>Signup</h2>
                     <div className="form-group">
                         <label>Email</label>
                         <input type="email" className="form-control" onChange={this.getEmail}></input>

@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 function Navbar(props){
     var counter=0;
     let search=function(event){
@@ -24,12 +25,15 @@ function Navbar(props){
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
-                    <a className="nav-link" href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80">Home <span className="sr-only">(current)</span></a>
+                    <Link to="/"><a className="nav-link" href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80">Home <span className="sr-only">(current)</span></a></Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80">Link</a>
+                <Link to="/login"><a className="nav-link" href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80">Login</a></Link>
                 </li>
-                <li className="nav-item dropdown">
+                <li className="nav-item">
+                <Link to="/signup"><a className="nav-link" href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80">SignUp</a></Link>
+                </li>
+                {/* <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown
                     </a>
@@ -42,7 +46,7 @@ function Navbar(props){
                 </li>
                 <li className="nav-item">
                     <a className="nav-link disabled" href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
+                </li> */}
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                 <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
