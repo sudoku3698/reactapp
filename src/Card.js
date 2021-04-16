@@ -7,7 +7,7 @@ function Card(props){
             <div className="card-body">
             <h5 className="card-title">{props.cake.name}</h5>
             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <Link to="cake/{props.cake.id}"><a  href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80" className="btn btn-primary">Go somewhere</a></Link>
+            <Link to="cake/${props.cake.id}"><a  href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80" className="btn btn-primary">Go somewhere</a></Link>
             </div>
         </div>
         </>
