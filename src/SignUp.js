@@ -47,7 +47,7 @@ class SignUp extends Component{
                         <label>Password</label>
                         <input type="password" className="form-control" onChange={this.getPassword}></input>
                     </div>
-                    <div className="alert alert-danger">
+                    <div className="text-danger">
                         {this.state.errorMessage}
                     </div>
                     
