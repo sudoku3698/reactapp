@@ -1,6 +1,8 @@
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
+import axios from 'axios';
 
 function Login(props){
+    // console.log("login compoenent",props)
     // useEffect(()=>{
     //     alert('Mounted and Updated')
     // },[])
@@ -29,9 +31,27 @@ function Login(props){
         setError("Please enter valid credentials")
         
        }else{
-        console.log(user)
-        props.setlogin(true)
-        setError("")
+        let loginapi="https://apibyashu.herokuapp.com/api/login"
+        axios({
+            url:loginapi,
+            method:"post",
+            data:user
+        }).then((response)=>{
+            if(response.data.token)
+            {
+                localStorage.token=response.data.token
+                localStorage.email=response.data.email
+                props.setlogin(true)
+                setError("")
+                props.history.push("/")
+            }else
+            {
+                setError("Invalid Credentials")
+               // alert("Invalid Credentials")
+            }
+        },(error)=>{
+            console.log("error from login api",error)
+        })
        }
     }
     return(

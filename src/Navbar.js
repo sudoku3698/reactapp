@@ -1,12 +1,16 @@
+import {useState} from 'react'
 import {Link} from 'react-router-dom'
+
 function Navbar(props){
     var counter=0;
+    var [searchfield,setSearchfield]=useState('');
     let search=function(event){
         event.preventDefault()
-        counter++;
-        console.log(counter)
+        console.log("search",searchfield)
     }
-
+    let getSearch=function(event){
+        setSearchfield(event.target.value)
+    }
     let onLogin=()=>{
         props.setlogin(true)
     }
@@ -49,7 +53,7 @@ function Navbar(props){
                 </li> */}
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
-                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={getSearch}/>
                 <button onClick={search} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 {props.islogin ?<button onClick={onLogout} className="btn btn-primary">Logout</button>:<button onClick={onLogin} className="btn btn-primary">Login</button>}
