@@ -1,12 +1,15 @@
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
 
 function Navbar(props){
+    const history = useHistory();
     var counter=0;
     var [searchfield,setSearchfield]=useState('');
     let search=function(event){
         event.preventDefault()
         console.log("search",searchfield)
+        let searchurl="/?qu="+searchfield
+        history.push(searchurl)
     }
     let getSearch=function(event){
         setSearchfield(event.target.value)
