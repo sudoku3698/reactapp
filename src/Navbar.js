@@ -1,5 +1,7 @@
 import {useState} from 'react'
 import {Link,useHistory} from 'react-router-dom'
+import Cart from './Cart'
+import {connect} from 'react-redux'
 
 function Navbar(props){
     const history = useHistory();
@@ -14,12 +16,12 @@ function Navbar(props){
     let getSearch=function(event){
         setSearchfield(event.target.value)
     }
-    let onLogin=()=>{
-        props.setlogin(true)
-    }
 
     let onLogout=()=>{
-        props.setlogin(false)
+        props.dispatch({
+            type:"LOGOUT"
+        })
+        history.push('/login')
     }
     return (
         <>
@@ -59,8 +61,8 @@ function Navbar(props){
                 <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={getSearch}/>
                 <button onClick={search} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
-                {props.islogin ?<button onClick={onLogout} className="btn btn-primary">Logout</button>:<button onClick={onLogin} className="btn btn-primary">Login</button>}
-                
+                {props.setlogin ?<button onClick={onLogout} className="btn btn-primary">Logout</button>:''}
+                <Cart/>
                 
             </div>
             </nav>
@@ -68,4 +70,9 @@ function Navbar(props){
     )
 }
 
-export default Navbar
+export default connect(function(state,props){
+    return{
+        user:state && state?.user?.name,
+        setlogin:state && state["isloggedin"]
+    }
+})(Navbar)

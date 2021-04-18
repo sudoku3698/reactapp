@@ -6,10 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import "jquery/dist/jquery.slim";
 import "bootstrap/dist/js/bootstrap.bundle"
 import "bootstrap/dist/css/bootstrap.min.css" 
+import './CakeStore/Store'
+import {Provider} from 'react-redux';
+import dmart from './CakeStore/Store';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={dmart}>
     <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,10 +1,11 @@
 import {Component} from 'react';
-
+import axios from 'axios';
 class SignUp extends Component{
     constructor(){
         super()
         this.state={
-            onlineusers:0
+            onlineusers:0,
+            error:''
         }
     }
     user={
@@ -12,16 +13,31 @@ class SignUp extends Component{
     }
     register=()=>{
       
-       if(!this.user.email && !this.user.password)
+        if(!this.user.email && !this.user.password)
        {
-        this.setState({
-            errorMessage:"Please enter valid credentials"
-        })
+        this.setState({setError:"Please enter valid credentials"})
         
        }else{
-        console.log(this.user)
-        this.setState({
-            errorMessage:""
+        let loginapi="https://apibyashu.herokuapp.com/api/register"
+        axios({
+            url:loginapi,
+            method:"post",
+            data:this.user
+        }).then((response)=>{
+            if(response.data.token)
+            {
+                localStorage.token=response.data.token
+                localStorage.email=response.data.email
+                //props.setlogin(true)
+                this.setState({setError:""})
+                this.props.history.push("/")
+            }else
+            {
+                this.setState({setError:"Invalid Credentials"})
+               // alert("Invalid Credentials")
+            }
+        },(error)=>{
+            console.log("error from login api",error)
         })
        }
     }

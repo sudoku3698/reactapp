@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import axios from 'axios';
+import {connect} from 'react-redux'
 
 function Login(props){
     // console.log("login compoenent",props)
@@ -41,7 +42,11 @@ function Login(props){
             {
                 localStorage.token=response.data.token
                 localStorage.email=response.data.email
-                props.setlogin(true)
+                //props.setlogin(true)
+                props.dispatch({
+                    type:"LOGIN",
+                    payload:response.data
+                })
                 setError("")
                 props.history.push("/")
             }else
@@ -79,4 +84,4 @@ function Login(props){
     )
 }
 
-export default Login
+export default connect()(Login)

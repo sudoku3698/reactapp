@@ -6,8 +6,29 @@ import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom
 import Home from './Home'
 import {useState} from 'react'
 import CakeDetails from './CakeDetails'
-function App() {
+import axios from 'axios';
+import {connect} from 'react-redux'
+function App(props) {
   var [login,setLogin]=useState(false);
+
+  if(localStorage.token && !props.user)
+  {
+    var token=localStorage.token
+    axios({
+      method:'get',
+      url:"https://apibyashu.herokuapp.com/api/getuserdetails",
+      headers:{
+        authtoken:token
+      }
+    }).then((response)=>{
+      props.dispatch({
+        type:"INITIALISE_USER",
+        payload:response.data.data
+      })
+    },(error)=>{
+      console.log(error)
+    })
+  }
   return (
     <div>
       <Router>
@@ -27,4 +48,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect()(App);
