@@ -22,7 +22,7 @@ let Cart=function(props){
             return( <tr>
                 <td>{prod.name}</td>
                 <td>{prod.price}</td>
-                <td><img src={prod.image} style={{"width":"100px"}}/></td>
+                <td><img src={prod.image} style={{"width":"100px","height":"100px"}}/></td>
                 <td><button className="btn btn-danger" onClick={(event)=>deleteProd(prod)}>delete</button></td>
             </tr>)
         })}
