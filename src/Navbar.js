@@ -59,15 +59,16 @@ function Navbar(props){
                     <a className="nav-link disabled" href="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li> */}
                 </ul>
+                <Link to="/cart"><div class="wrapper mr-4">
+                <i class="fa" style={{"font-size":"24px"}}>&#xf07a;</i>
+                 <span> {props.counter} </span>
+                 </div></Link>
                 <form className="form-inline my-2 my-lg-0">
                 <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={getSearch}/>
                 <button onClick={search} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 {props.setlogin ?<button onClick={onLogout} className="btn btn-primary">Logout</button>:''}
-                <Link to="/cart"><div class="wrapper">
-                <i class="fa" style={{"font-size":"24px"}}>&#xf07a;</i>
-                 <span> {props.counter} </span>
-                 </div></Link>
+               
                 
             </div>
             </nav>
