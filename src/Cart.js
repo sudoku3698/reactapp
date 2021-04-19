@@ -18,7 +18,7 @@ let Cart=function(props){
                 <th>Action</th>
             </tr>
         </thead>
-        {props.items.map((prod,index)=>{
+        {props.items && props.items.map((prod,index)=>{
             return( <tr>
                 <td>{prod.name}</td>
                 <td>{prod.price}</td>
