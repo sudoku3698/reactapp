@@ -1,10 +1,19 @@
-import {useParams} from "react-router-dom";
+import {useParams,Link} from "react-router-dom";
 import cakes from './cakedata';
+import {connect} from 'react-redux'
 function CakeDetails(props){
     const param=useParams();
     console.log(param.cakeid)
     const cakeresult=cakes.filter(cake=>cake.cakeid==param.cakeid)
     console.log(cakeresult)
+    let addToCart=()=>{
+        let cakedetails=cakeresult[0]
+        props.dispatch({
+            type:"ADDTOCART",
+            payload:cakedetails
+        })
+       // alert('added to cart');
+    }
     return (
         <div>
             <div className="card mb-3" style={{"max-width":"540px"}}>
@@ -18,6 +27,7 @@ function CakeDetails(props){
                     <p className="card-text">{cakeresult[0].price}</p>
                     <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                 </div>
+            <button className="btn btn-primary" onClick={addToCart}>Add to cart</button>
                 </div>
             </div>
             </div>
@@ -25,4 +35,4 @@ function CakeDetails(props){
     );
 }
 
-export default CakeDetails;
+export default connect()(CakeDetails);
