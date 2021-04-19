@@ -1,0 +1,15 @@
+
+.wrapper{
+    position: relative;
+    }
+    .wrapper span{
+    position: absolute;
+    top: 0px;
+    border: 1px solid black;
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    right: -20px; 
+    }

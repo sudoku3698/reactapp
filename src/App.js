@@ -8,6 +8,7 @@ import {useState} from 'react'
 import CakeDetails from './CakeDetails'
 import axios from 'axios';
 import {connect} from 'react-redux'
+import Cart from './Cart';
 function App(props) {
   var [login,setLogin]=useState(false);
 
@@ -38,6 +39,7 @@ function App(props) {
           <Route path="/login" exact component={Login}/>
           <Route path="/signup" exact component={SignUp}/>
           <Route path="/cake/:cakeid" exact component={CakeDetails}/>
+          <Route path="/cart" exact component={Cart}/>
           <Route path="/*">
             <Redirect to="/"></Redirect>
           </Route>

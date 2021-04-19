@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {Link,useHistory} from 'react-router-dom'
 import Cart from './Cart'
 import {connect} from 'react-redux'
+import './cartStyle.css';
 
 function Navbar(props){
     const history = useHistory();
@@ -23,6 +24,7 @@ function Navbar(props){
         })
         history.push('/login')
     }
+
     return (
         <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -62,7 +64,10 @@ function Navbar(props){
                 <button onClick={search} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 {props.setlogin ?<button onClick={onLogout} className="btn btn-primary">Logout</button>:''}
-                <Cart/>
+                <Link to="/cart"><div class="wrapper">
+                <i class="fa" style={{"font-size":"24px"}}>&#xf07a;</i>
+                 <span> {props.counter} </span>
+                 </div></Link>
                 
             </div>
             </nav>
@@ -71,8 +76,11 @@ function Navbar(props){
 }
 
 export default connect(function(state,props){
+    console.log('cart',state && state?.cart.length)
     return{
         user:state && state?.user?.name,
-        setlogin:state && state["isloggedin"]
+        setlogin:state && state["isloggedin"],
+        cart_items:state && state?.cart,
+        counter:state?.cart.length
     }
 })(Navbar)
