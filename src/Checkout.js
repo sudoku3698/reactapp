@@ -1,5 +1,5 @@
 import { useRouteMatch } from "react-router"
-import { Route,Link,Switch } from "react-router-dom"
+import { Route,Link } from "react-router-dom"
 import CartSummary from './Checkout/CartSummary'
 import Address from './Checkout/Address'
 import Payment from './Checkout/Payment'
@@ -14,7 +14,6 @@ var Checkout=function(props){
         <>
         <div className="row">
             <div className="col-4">
-          
                 <Link to={url} ><li>Cart Summary</li></Link>
                 <Link to={url+"/address"} ><li>Address</li></Link>
                 <Link to={url+"/payment"} ><li>Payment</li></Link>

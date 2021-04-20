@@ -1,14 +1,22 @@
-import {Link} from 'react-router-dom'
+import {Link,withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+
 function Card(props){
     //console.log(props)
     let addToCart=()=>{
-        let cakedetails=props.cake
-        props.dispatch({
-            type:"ADDTOCART",
-            payload:cakedetails
-        })
-       // alert('added to cart');
+        if(localStorage.token)
+        {
+            let cakedetails=props.cake
+            props.dispatch({
+                type:"ADDTOCART",
+                payload:cakedetails
+            })
+            alert('item added to cart');
+        }else
+        {
+            alert('please do login to add product in the cart')
+            props.history.push("/login")
+        }
     }
     return (
         <>
@@ -27,4 +35,4 @@ function Card(props){
     );
 }
 
-export default connect()(Card)
+export default connect()(withRouter(Card))

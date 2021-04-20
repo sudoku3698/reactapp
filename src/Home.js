@@ -3,6 +3,7 @@ import Card from './Card';
 import cakesdata from './cakedata';
 import queryString from "query-string";
 import { useState,useEffect } from 'react/cjs/react.development';
+import {connect} from 'react-redux'
 import axios from 'axios'
 function Home(props){
   const parsed = queryString.parse(props.location.search);
@@ -39,4 +40,4 @@ function Home(props){
     </div>);
 }
 
-export default Home;
+export default connect()(Home);
