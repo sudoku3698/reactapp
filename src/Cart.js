@@ -1,4 +1,5 @@
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 let Cart=function(props){
     var items=[]
     let deleteProd=(prod)=>{
@@ -26,10 +27,10 @@ let Cart=function(props){
                 <td><button className="btn btn-danger" onClick={(event)=>deleteProd(prod)}>delete</button></td>
             </tr>)
         })}
+        <tr><td colSpan="4" style={{"text-align":"right"}}><Link to="/checkout"><button className="btn btn-primary">Checkout</button></Link></td></tr>
         </table>
     </h1></>)
 }
-
 
 export default connect(function(state,props){
     return{

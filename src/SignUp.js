@@ -51,6 +51,10 @@ class SignUp extends Component{
         this.user.password=event.target.value
     }
 
+    getName=(event)=>{
+        this.user.name=event.target.value
+    }
+
     render(){
         return(
                 <div style={{"width":"50%", "margin":"auto"}}>
@@ -58,6 +62,10 @@ class SignUp extends Component{
                     <div className="form-group">
                         <label>Email</label>
                         <input type="email" className="form-control" onChange={this.getEmail}></input>
+                    </div>
+                    <div className="form-group">
+                        <label>Name</label>
+                        <input type="text" className="form-control" onChange={this.getName}></input>
                     </div>
                     <div className="form-group">
                         <label>Password</label>
