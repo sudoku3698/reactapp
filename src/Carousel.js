@@ -2,7 +2,7 @@
 const image1="images/image1.jpeg";
 const image2="images/image2.jpg";
 const image3="images/image3.jpeg";
-const imageWidth={"height":"250px"}
+const imageWidth={"height":"400px"}
 function Carousel(){
     return (
         <>
