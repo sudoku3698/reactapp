@@ -6,7 +6,7 @@ import './cartStyle.css';
 
 function Navbar(props){
     const history = useHistory();
-    var counter=0;
+    var [counter,setCounter]=useState(0);
     var showhide="block";
     if(localStorage.token)
     {

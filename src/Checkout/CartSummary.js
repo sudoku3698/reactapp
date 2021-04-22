@@ -1,6 +1,27 @@
 import {connect} from "react-redux"
+import {useState,useEffect} from "react"
+import axios from "axios"
 let CartSummary=function(props){
-    let items={}
+    let [items, setItems]=useState([])
+    
+    useEffect(()=>{
+        let add_to_get_cart="https://apibyashu.herokuapp.com/api/cakecart"
+        axios({
+            url:add_to_get_cart,
+            method:"post",
+            headers:{Authtoken:localStorage.token}
+        }).then((response)=>{
+            console.log(response.data)
+            setItems(response.data.data)
+            props.dispatch({
+                type:"CART_ITEMS",
+                payload:response.data.data
+            })
+            console.log("local ",items)
+        }).catch((error)=>{
+            console.log('error from cakecart api',error)
+        })        
+    },[])
     let total_cost=0
     return (
         <>

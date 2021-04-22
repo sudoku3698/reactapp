@@ -17,6 +17,11 @@ var demo=function(state,action){
             state['user']=action.payload
             return state
         }
+        case "CART_ITEMS":{
+            state={...state}
+            state['cart']=action.payload
+            return state
+        }
         case "ADDTOCART":{
             state={...state}
             let cart=state && state?.cart
@@ -33,7 +38,7 @@ var demo=function(state,action){
             state={...state}
             let cart=state && state?.cart
             let item=action.payload
-            console.log(cart,item)
+            //console.log(cart,item)
             if(cart===undefined)
             {
                 cart=[];

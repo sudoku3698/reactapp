@@ -1,12 +1,47 @@
+import axios from 'axios'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import { useEffect,useState } from 'react'
 let Cart=function(props){
-    var items=[]
+    let [items, setItems]=useState([])
+    
+    useEffect(()=>{
+        let add_to_get_cart="https://apibyashu.herokuapp.com/api/cakecart"
+        axios({
+            url:add_to_get_cart,
+            method:"post",
+            headers:{Authtoken:localStorage.token}
+        }).then((response)=>{
+            console.log(response.data)
+            setItems(response.data.data)
+            props.dispatch({
+                type:"CART_ITEMS",
+                payload:response.data.data
+            })
+            console.log("local ",items)
+        }).catch((error)=>{
+            console.log('error from cakecart api',error)
+        })        
+    },[])
     let deleteProd=(prod)=>{
-        props.dispatch({
-            type:"REMOVEFROMCART",
-            payload:prod
-        })
+        let deletecake="https://apibyashu.herokuapp.com/api/removecakefromcart";
+        axios({
+            url:deletecake,
+            method:"post",
+            data:{cakeid:prod.cakeid},
+            headers:{Authtoken:localStorage.token}
+        }).then((response)=>{
+          //  console.log(response.data)
+            setItems(response.data.data)
+            props.dispatch({
+                type:"REMOVEFROMCART",
+                payload:prod
+            })
+           // console.log("local ",items)
+        }).catch((error)=>{
+            console.log('error from cakecart api',error)
+        })       
+       
     }
     
     return (<><h1>
@@ -19,7 +54,7 @@ let Cart=function(props){
                 <th>Action</th>
             </tr>
         </thead>
-        {props.items && props.items.map((prod,index)=>{
+        {items && items.map((prod,index)=>{
             return( <tr>
                 <td>{prod.name}</td>
                 <td>₹{prod.price}</td>
@@ -32,7 +67,7 @@ let Cart=function(props){
     </h1></>)
 }
 
-export default connect(function(state,props){
+export default connect((state,props)=>{
     return{
         items:state && state?.cart
     }

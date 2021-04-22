@@ -1,20 +1,40 @@
 import {useParams,Link} from "react-router-dom";
 import cakes from './cakedata';
 import {connect} from 'react-redux'
+import axios from 'axios'
 function CakeDetails(props){
     const param=useParams();
     console.log(param.cakeid)
     const cakeresult=cakes.filter(cake=>cake.cakeid==param.cakeid)
     console.log(cakeresult)
     let addToCart=()=>{
-        let cakedetails=cakeresult[0]
-        if(localStorage.token)
-        {
-        props.dispatch({
-            type:"ADDTOCART",
-            payload:cakedetails
-        })
-      alert('Item added to cart');
+    let cakedetails=cakeresult[0]
+    if(localStorage.token)
+    {
+        let add_to_cart_api="https://apibyashu.herokuapp.com/api/addcaketocart"
+            let cakedata={
+                cakeid:cakedetails.cakeid,
+                name:cakedetails.name,
+                image:cakedetails.image,
+                price:cakedetails.price,
+                weight:"300"
+            }
+            axios({
+                url:add_to_cart_api,
+                method:"post",
+                data:cakedata,
+                headers:{Authtoken:localStorage.token}
+            }).then((response)=>{
+                console.log("add to cart api response",response)
+                props.dispatch({
+                    type:"ADDTOCART",
+                    payload:cakedetails
+                })
+                alert(response.data.message);
+            }).catch((error)=>{
+                alert('something went wrong')
+                console.log('error from addToCartAPI',error)
+            })
     }else{
         alert('please do login to add product in the cart')
             props.history.push("/login")

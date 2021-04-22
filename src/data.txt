@@ -3,6 +3,12 @@ Method -post
 Request obj - {caked, name, image, price,weight} 
 Authtoken 
 
+
+POST https://apibyashu.herokuapp.com/api/cakecart
+ 
+ "https://apibyashu.herokuapp.com/api/removecakefromcart"
+
 /recoverpassword post {email:""} 
 
 state && state?.cart
+https://github.com/sudoku3698/reactapp.git

@@ -1,17 +1,37 @@
 import {Link,withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-
+import axios from 'axios'
 function Card(props){
     //console.log(props)
     let addToCart=()=>{
         if(localStorage.token)
         {
             let cakedetails=props.cake
-            props.dispatch({
-                type:"ADDTOCART",
-                payload:cakedetails
+            let add_to_cart_api="https://apibyashu.herokuapp.com/api/addcaketocart"
+            let cakedata={
+                cakeid:props.cake.cakeid,
+                name:props.cake.name,
+                image:props.cake.image,
+                price:props.cake.price,
+                weight:"300"
+            }
+            axios({
+                url:add_to_cart_api,
+                method:"post",
+                data:cakedata,
+                headers:{Authtoken:localStorage.token}
+            }).then((response)=>{
+                console.log("add to cart api response",response)
+                props.dispatch({
+                    type:"ADDTOCART",
+                    payload:cakedetails
+                })
+                alert(response.data.message);
+            }).catch((error)=>{
+                alert('something went wrong')
+                console.log('error from addToCartAPI',error)
             })
-            alert('item added to cart');
+           
         }else
         {
             alert('please do login to add product in the cart')
