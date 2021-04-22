@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom'
 import { useEffect,useState } from 'react'
 let Cart=function(props){
     let [items, setItems]=useState([])
-    
-    useEffect(()=>{
+    function fetchItems()
+    {
         let add_to_get_cart="https://apibyashu.herokuapp.com/api/cakecart"
         axios({
             url:add_to_get_cart,
@@ -21,7 +21,10 @@ let Cart=function(props){
             console.log("local ",items)
         }).catch((error)=>{
             console.log('error from cakecart api',error)
-        })        
+        }) 
+    }
+    useEffect(()=>{
+        fetchItems()
     },[])
     let deleteProd=(prod)=>{
         let deletecake="https://apibyashu.herokuapp.com/api/removecakefromcart";
@@ -32,11 +35,13 @@ let Cart=function(props){
             headers:{Authtoken:localStorage.token}
         }).then((response)=>{
           //  console.log(response.data)
-            setItems(response.data.data)
+            //setItems(response.data.data)
             props.dispatch({
                 type:"REMOVEFROMCART",
                 payload:prod
             })
+            fetchItems()
+            alert('item deleted')
            // console.log("local ",items)
         }).catch((error)=>{
             console.log('error from cakecart api',error)
@@ -55,7 +60,7 @@ let Cart=function(props){
             </tr>
         </thead>
         {items && items.map((prod,index)=>{
-            return( <tr>
+            return( <tr key={index}>
                 <td>{prod.name}</td>
                 <td>₹{prod.price}</td>
                 <td><img src={prod.image} style={{"width":"100px","height":"100px"}}/></td>
