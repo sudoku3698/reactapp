@@ -13,8 +13,8 @@ import Checkout from './Checkout'
 function App(props) {
   var [login,setLogin]=useState(false);
 
-  if(localStorage.token && !props.user)
-  {
+if(localStorage.token && !props.user)
+{
     var token=localStorage.token
     axios({
       method:'get',
@@ -41,7 +41,9 @@ function App(props) {
           <Route path="/signup" exact component={SignUp}/>
           <Route path="/cake/:cakeid" exact component={CakeDetails}/>
           <Route path="/cart" exact component={Cart}/>
-          <Route path="/checkout" exact component={Checkout}/>
+          <Route path="/checkout">
+            <Checkout/>
+          </Route>
           <Route path="/*">
             <Redirect to="/"></Redirect>
           </Route>

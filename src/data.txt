@@ -2,3 +2,7 @@
 Method -post 
 Request obj - {caked, name, image, price,weight} 
 Authtoken 
+
+/recoverpassword post {email:""} 
+
+state && state?.cart
