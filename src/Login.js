@@ -61,37 +61,31 @@ function Login(props){
         {
             setLoginerrors(errors)
         }else{
-            if(!user.email && !user.password)
-            {
-                setError("Please enter valid credentials")
-                
-            }else{
-                let loginapi="https://apibyashu.herokuapp.com/api/login"
-                axios({
-                    url:loginapi,
-                    method:"post",
-                    data:user
-                }).then((response)=>{
-                    if(response.data.token)
-                    {
-                        localStorage.token=response.data.token
-                        localStorage.email=response.data.email
-                        //props.setlogin(true)
-                        props.dispatch({
-                            type:"LOGIN",
-                            payload:response.data
-                        })
-                        setError("")
-                        props.history.push("/")
-                    }else
-                    {
-                        setError("Invalid Credentials")
-                    // alert("Invalid Credentials")
-                    }
-                },(error)=>{
-                    console.log("error from login api",error)
-                })
-            }
+            let loginapi="https://apibyashu.herokuapp.com/api/login"
+            axios({
+                url:loginapi,
+                method:"post",
+                data:user
+            }).then((response)=>{
+                if(response.data.token)
+                {
+                    localStorage.token=response.data.token
+                    localStorage.email=response.data.email
+                    //props.setlogin(true)
+                    props.dispatch({
+                        type:"LOGIN",
+                        payload:response.data
+                    })
+                    setError("")
+                    props.history.push("/")
+                }else
+                {
+                    setError("Invalid Credentials")
+                // alert("Invalid Credentials")
+                }
+            },(error)=>{
+                console.log("error from login api",error)
+            })
         }
     
     }
